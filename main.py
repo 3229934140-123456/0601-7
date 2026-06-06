@@ -215,6 +215,11 @@ class MovieTrackerCLI:
             return
 
         filter_mode = getattr(args, 'filter', 'all')
+        target_season = getattr(args, 'season', None)
+        target_episode = getattr(args, 'episode', None)
+        around_next = getattr(args, 'around_next', False)
+        limit = getattr(args, 'limit', None)
+        page = getattr(args, 'page', 1)
 
         type_str = '电影' if item.media_type == MediaType.MOVIE else '剧集' if item.media_type == MediaType.TV else '未知'
         status_map = {
@@ -226,9 +231,9 @@ class MovieTrackerCLI:
         status_str = status_map.get(item.watch_status, '未知')
 
         print()
-        print("=" * 50)
+        print("=" * 60)
         print(f"[详情] {item.title}")
-        print("=" * 50)
+        print("=" * 60)
         print(f"  ID: {item.id}")
         print(f"  类型: {type_str}")
         print(f"  年份: {item.year or '-'}")
@@ -245,48 +250,123 @@ class MovieTrackerCLI:
             print(f"  订阅: 已订阅")
         print()
 
-        if item.media_type == MediaType.TV:
-            print(f"  总集数: {item.total_episodes} 集")
-            print(f"  已看: {item.watched_episodes} 集 ({item.progress_percent}%)")
-            unassigned = sum(1 for s in item.seasons for ep in s.episodes if ep.air_date is None)
-            print(f"  待排期: {unassigned} 集")
-            if item.next_episode_info:
-                print(f"  下一集: {item.next_episode_info}")
-            else:
-                print(f"  下一集: 待排期")
+        if item.media_type != MediaType.TV:
+            print("=" * 60)
+            print()
+            return
+
+        print(f"  总集数: {item.total_episodes} 集")
+        print(f"  已看: {item.watched_episodes} 集 ({item.progress_percent}%)")
+        unassigned = sum(1 for s in item.seasons for ep in s.episodes if ep.air_date is None)
+        print(f"  待排期: {unassigned} 集")
+        if item.next_episode_info:
+            print(f"  下一集: {item.next_episode_info}")
+        else:
+            print(f"  下一集: 待排期")
+        print()
+
+        highlight_ep = None
+        if around_next:
+            next_info = self._find_next_episode(item)
+            if next_info:
+                highlight_ep = next_info
+                print(f"  [定位] 从下一集附近: S{next_info[0]:02d}E{next_info[1]:02d}")
+                print()
+        elif target_season and target_episode:
+            highlight_ep = (target_season, target_episode)
+            print(f"  [定位] 指定集: S{target_season:02d}E{target_episode:02d}")
+            print()
+        elif target_season:
+            print(f"  [定位] 第{target_season}季")
             print()
 
-            for season in item.seasons:
-                watched = season.watched_episodes
-                total = len(season.episodes)
-
-                eps_to_show = []
-                for ep in season.episodes:
-                    if filter_mode == 'watched' and not ep.watched:
-                        continue
-                    if filter_mode == 'unwatched' and ep.watched:
-                        continue
-                    if filter_mode == 'unassigned' and ep.air_date is not None:
-                        continue
-                    eps_to_show.append(ep)
-
-                if not eps_to_show:
+        all_eps = []
+        for season in item.seasons:
+            if target_season is not None and season.season_number != target_season:
+                continue
+            for ep in season.episodes:
+                if filter_mode == 'watched' and not ep.watched:
                     continue
+                if filter_mode == 'unwatched' and ep.watched:
+                    continue
+                if filter_mode == 'unassigned' and ep.air_date is not None:
+                    continue
+                all_eps.append((season.season_number, ep))
 
-                print(f"  第{season.season_number}季 ({season.title or ''}) - {watched}/{total} 集已看")
+        total_eps = len(all_eps)
+
+        if target_episode and target_season:
+            ep_info = item.get_episode(target_season, target_episode)
+            if ep_info:
+                s_num, ep = target_season, ep_info
+                mark = "[X]" if ep.watched else "[ ]"
+                status = "待排期" if ep.air_date is None else ep.air_date.isoformat()
+                print(f"  第{s_num}季 第{ep.episode_number}集 - {ep.title or '第%d集' % ep.episode_number}")
+                print(f"  {'-'*40}")
+                print(f"    {mark} S{s_num:02d}E{ep.episode_number:02d} - {ep.title or '第%d集' % ep.episode_number} [{status}]")
+                if ep.overview:
+                    print(f"    简介: {ep.overview[:100]}...")
+                if ep.watched_date:
+                    print(f"    观看日期: {ep.watched_date.isoformat()}")
+                print()
+            else:
+                print(f"  未找到 S{target_season:02d}E{target_episode:02d}\n")
+            print("=" * 60)
+            print()
+            return
+
+        if limit:
+            start_idx = (page - 1) * limit
+            end_idx = start_idx + limit
+            display_eps = all_eps[start_idx:end_idx]
+        else:
+            display_eps = all_eps
+            start_idx = 0
+            end_idx = total_eps
+
+        current_season = None
+        season_ep_count = {}
+        for s_num, ep in all_eps:
+            season_ep_count[s_num] = season_ep_count.get(s_num, 0) + 1
+
+        for s_num, ep in display_eps:
+            if s_num != current_season:
+                current_season = s_num
+                season = item.get_season(s_num)
+                watched = season.watched_episodes if season else 0
+                total_in_season = len(season.episodes) if season else 0
+                shown = season_ep_count.get(s_num, 0)
+                filter_note = ""
+                if filter_mode != 'all' or target_season is not None:
+                    filter_note = f" (显示{shown}集)"
+                print(f"  第{s_num}季 ({season.title if season and season.title else ''}) - {watched}/{total_in_season} 集已看{filter_note}")
                 print(f"  {'-'*40}")
 
-                for ep in eps_to_show[:20]:
-                    mark = "[X]" if ep.watched else "[ ]"
-                    status = "待排期" if ep.air_date is None else ep.air_date.isoformat()
-                    print(f"    {mark} S{season.season_number:02d}E{ep.episode_number:02d} - {ep.title or '第%d集' % ep.episode_number} [{status}]")
+            mark = "[X]" if ep.watched else "[ ]"
+            status = "待排期" if ep.air_date is None else ep.air_date.isoformat()
+            hl = " <--" if highlight_ep and highlight_ep == (s_num, ep.episode_number) else ""
+            print(f"    {mark} S{s_num:02d}E{ep.episode_number:02d} - {ep.title or '第%d集' % ep.episode_number} [{status}]{hl}")
 
-                if len(eps_to_show) > 20:
-                    print(f"    ... 还有 {len(eps_to_show) - 20} 集")
-                print()
-
-        print("=" * 50)
+        if not display_eps:
+            print("  (无符合条件的集数)")
         print()
+
+        if limit and total_eps > end_idx:
+            print(f"  显示 {start_idx+1}-{end_idx} / 共 {total_eps} 集")
+            print(f"  下一页: detail {item.id} --limit {limit} --page {page+1}")
+            print()
+
+        print("=" * 60)
+        print()
+
+    def _find_next_episode(self, item: MediaItem):
+        if item.media_type != MediaType.TV:
+            return None
+        for season in item.seasons:
+            for ep in season.episodes:
+                if not ep.watched:
+                    return (season.season_number, ep.episode_number)
+        return None
 
     def cmd_search(self, args):
         keyword = args.keyword
@@ -477,6 +557,11 @@ class MovieTrackerCLI:
         detail_parser.add_argument('id', help='影视ID')
         detail_parser.add_argument('--filter', choices=['all', 'watched', 'unwatched', 'unassigned'],
                                    default='all', help='集数筛选')
+        detail_parser.add_argument('--season', type=int, help='指定季号')
+        detail_parser.add_argument('--episode', type=int, help='指定集号')
+        detail_parser.add_argument('--around-next', action='store_true', help='定位到下一集附近')
+        detail_parser.add_argument('--limit', type=int, help='每页显示集数')
+        detail_parser.add_argument('--page', type=int, default=1, help='页码')
         detail_parser.set_defaults(func=self.cmd_detail)
 
         search_parser = subparsers.add_parser('search', help='搜索影视')
