@@ -12,7 +12,9 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from modules import importer, matcher, subscriber, calendar_mod, notifier, exporter, logger, scheduler
 from utils.database import db
-from models.media import MediaType, WatchStatus
+from utils.config_manager import config
+from models.media import MediaType, WatchStatus, MediaItem
+from typing import Optional
 
 
 class MovieTrackerCLI:
@@ -77,7 +79,40 @@ class MovieTrackerCLI:
             print(f"订阅了 {count} 部剧集")
         elif action == 'check':
             result = subscriber.run()
-            print(f"检查完成: {result['new_episodes']} 集新内容")
+            print()
+            print("=" * 50)
+            print("[订阅] 订阅检查结果")
+            print("=" * 50)
+            print(f"  已订阅剧集: {result['total_subscribed']} 部")
+            print(f"  总集数: {result.get('total_episodes', 0)} 集")
+            print(f"  已通知: {result.get('notified_episodes', 0)} 集")
+            print(f"  本次新增: {result['new_episodes']} 集")
+            print(f"  待排期: {result.get('unassigned_episodes', 0)} 集")
+            print(f"  更新剧集: {result['updated_shows']} 部")
+            print()
+
+            show_details = result.get('show_details', [])
+
+            if result['new_episodes'] > 0:
+                print("本次新集:")
+                new_list = result.get('new_episodes_list', [])
+                for ep in new_list[:20]:
+                    status = "待排期" if ep.get('is_unassigned') else (ep.get('air_date') or '未知日期')
+                    print(f"  - {ep['title']} S{ep['season']:02d}E{ep['episode']:02d} [{status}]")
+                if len(new_list) > 20:
+                    print(f"  ... 还有 {len(new_list) - 20} 集")
+                print()
+            else:
+                print("本次没有新集。")
+                print()
+
+            if show_details:
+                print("已订阅剧集概览:")
+                for show in show_details:
+                    print(f"  [{show['title']}]")
+                    print(f"    总 {show['total_count']} 集 | 已通知 {show['notified_count']} 集 | 待排期 {show['unassigned_count']} 集 | 已看 {show['watched_count']} 集")
+                    print(f"    进度: {show['watched_count']}/{show['total_count']} ({ (show['watched_count']/show['total_count']*100):.1f}%)" if show['total_count'] > 0 else "    进度: 0%")
+                print()
 
     def cmd_calendar(self, args):
         view = args.view if hasattr(args, 'view') else 'month'
@@ -133,9 +168,7 @@ class MovieTrackerCLI:
         else:
             items = db.get_all_items()
 
-        print(f"\n影视列表 (共 {len(items)} 部)\n")
-        print(f"{'标题':<30} {'类型':<6} {'年份':<6} {'状态':<6} {'评分':<6} {'进度':<8}")
-        print("-" * 70)
+        print(f"\n[列表] 影视列表 (共 {len(items)} 部)\n")
         for item in items:
             type_str = '电影' if item.media_type == MediaType.MOVIE else '剧集' if item.media_type == MediaType.TV else '未知'
             status_map = {
@@ -146,9 +179,113 @@ class MovieTrackerCLI:
             }
             status_str = status_map.get(item.watch_status, '未知')
             rating_str = f"{item.rating}" if item.rating else '-'
-            progress_str = f"{item.progress_percent}%"
-            print(f"{item.title[:28]:<30} {type_str:<6} {item.year or '-':<6} "
-                  f"{status_str:<6} {rating_str:<6} {progress_str:<8}")
+
+            if item.media_type == MediaType.TV and item.total_episodes > 0:
+                progress_str = f"{item.watched_episodes}/{item.total_episodes}"
+                progress_pct = f"({item.progress_percent}%)"
+                next_info = item.next_episode_info or '下一集: 待排期'
+                last_watched = self._get_last_watched_episode(item)
+                last_str = f" | 上次看到: {last_watched}" if last_watched else ""
+                print(f"  [{item.id}] {item.title}")
+                print(f"      类型: {type_str} | 年份: {item.year or '-'} | 状态: {status_str} | 评分: {rating_str}")
+                print(f"      进度: {progress_str} {progress_pct}{last_str}")
+                print(f"      {next_info}")
+                if item.subscribed:
+                    print(f"      [已订阅]")
+            else:
+                print(f"  [{item.id}] {item.title}")
+                print(f"      类型: {type_str} | 年份: {item.year or '-'} | 状态: {status_str} | 评分: {rating_str}")
+            print()
+
+    def _get_last_watched_episode(self, item: MediaItem) -> Optional[str]:
+        if item.media_type != MediaType.TV:
+            return None
+        last_watched = None
+        for season in item.seasons:
+            for ep in season.episodes:
+                if ep.watched:
+                    last_watched = f"S{season.season_number:02d}E{ep.episode_number:02d}"
+        return last_watched
+
+    def cmd_detail(self, args):
+        item_id = args.id
+        item = db.get_item(item_id)
+        if not item:
+            print(f"\n未找到影视: {item_id}\n")
+            return
+
+        filter_mode = getattr(args, 'filter', 'all')
+
+        type_str = '电影' if item.media_type == MediaType.MOVIE else '剧集' if item.media_type == MediaType.TV else '未知'
+        status_map = {
+            WatchStatus.WISHLIST: '想看',
+            WatchStatus.WATCHING: '在看',
+            WatchStatus.WATCHED: '已看',
+            WatchStatus.DROPPED: '弃坑',
+        }
+        status_str = status_map.get(item.watch_status, '未知')
+
+        print()
+        print("=" * 50)
+        print(f"[详情] {item.title}")
+        print("=" * 50)
+        print(f"  ID: {item.id}")
+        print(f"  类型: {type_str}")
+        print(f"  年份: {item.year or '-'}")
+        print(f"  状态: {status_str}")
+        if item.rating:
+            print(f"  评分: {item.rating}")
+        if item.genres:
+            print(f"  类型: {', '.join(item.genres)}")
+        if item.directors:
+            print(f"  导演: {', '.join(item.directors)}")
+        if item.cast:
+            print(f"  主演: {', '.join(item.cast[:3])}")
+        if item.subscribed:
+            print(f"  订阅: 已订阅")
+        print()
+
+        if item.media_type == MediaType.TV:
+            print(f"  总集数: {item.total_episodes} 集")
+            print(f"  已看: {item.watched_episodes} 集 ({item.progress_percent}%)")
+            unassigned = sum(1 for s in item.seasons for ep in s.episodes if ep.air_date is None)
+            print(f"  待排期: {unassigned} 集")
+            if item.next_episode_info:
+                print(f"  下一集: {item.next_episode_info}")
+            else:
+                print(f"  下一集: 待排期")
+            print()
+
+            for season in item.seasons:
+                watched = season.watched_episodes
+                total = len(season.episodes)
+
+                eps_to_show = []
+                for ep in season.episodes:
+                    if filter_mode == 'watched' and not ep.watched:
+                        continue
+                    if filter_mode == 'unwatched' and ep.watched:
+                        continue
+                    if filter_mode == 'unassigned' and ep.air_date is not None:
+                        continue
+                    eps_to_show.append(ep)
+
+                if not eps_to_show:
+                    continue
+
+                print(f"  第{season.season_number}季 ({season.title or ''}) - {watched}/{total} 集已看")
+                print(f"  {'-'*40}")
+
+                for ep in eps_to_show[:20]:
+                    mark = "[X]" if ep.watched else "[ ]"
+                    status = "待排期" if ep.air_date is None else ep.air_date.isoformat()
+                    print(f"    {mark} S{season.season_number:02d}E{ep.episode_number:02d} - {ep.title or '第%d集' % ep.episode_number} [{status}]")
+
+                if len(eps_to_show) > 20:
+                    print(f"    ... 还有 {len(eps_to_show) - 20} 集")
+                print()
+
+        print("=" * 50)
         print()
 
     def cmd_search(self, args):
@@ -299,6 +436,7 @@ class MovieTrackerCLI:
   python main.py daemon start                  # 启动定时任务
             """
         )
+        parser.add_argument('--data-dir', help='指定数据目录(用于测试隔离)')
         subparsers = parser.add_subparsers(dest='command', help='可用命令')
 
         import_parser = subparsers.add_parser('import', help='导入本地片单')
@@ -334,6 +472,12 @@ class MovieTrackerCLI:
                                 help='筛选条件')
         list_parser.add_argument('--genre', help='类型筛选')
         list_parser.set_defaults(func=self.cmd_list)
+
+        detail_parser = subparsers.add_parser('detail', help='影视详情')
+        detail_parser.add_argument('id', help='影视ID')
+        detail_parser.add_argument('--filter', choices=['all', 'watched', 'unwatched', 'unassigned'],
+                                   default='all', help='集数筛选')
+        detail_parser.set_defaults(func=self.cmd_detail)
 
         search_parser = subparsers.add_parser('search', help='搜索影视')
         search_parser.add_argument('keyword', help='关键词')
@@ -376,6 +520,9 @@ class MovieTrackerCLI:
 
         args = parser.parse_args()
 
+        if args.data_dir:
+            self._switch_data_dir(args.data_dir)
+
         if args.command is None:
             parser.print_help()
             return
@@ -384,6 +531,12 @@ class MovieTrackerCLI:
             args.func(args)
         else:
             parser.print_help()
+
+    def _switch_data_dir(self, data_dir: str) -> None:
+        config.set_data_dir(data_dir)
+        db.reload()
+        matcher.reload()
+        subscriber.reload()
 
 
 def main():

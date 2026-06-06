@@ -1,7 +1,7 @@
 import os
 import json
 from datetime import date, datetime, timedelta
-from typing import List, Dict, Optional, Set
+from typing import List, Dict, Optional, Set, Tuple
 from models.media import MediaItem, MediaType, WatchStatus, Episode
 from utils.helpers import save_json, load_json
 from utils.config_manager import config
@@ -12,22 +12,36 @@ from modules.logger_module import logger
 class SubscriptionModule:
     def __init__(self):
         self.task_name = "subscription"
-        self.notified_file = os.path.join(config.data_dir, 'notified_episodes.json')
         self.new_episodes: List[Dict] = []
         self.stats = {
             'total_subscribed': 0,
             'new_episodes': 0,
             'updated_shows': 0,
+            'notified_episodes': 0,
+            'unassigned_episodes': 0,
             'failed': 0,
         }
+        self.show_details: List[Dict] = []
+
+    @property
+    def notified_file(self) -> str:
+        return os.path.join(config.data_dir, 'notified_episodes.json')
+
+    def reload(self) -> None:
+        self.new_episodes = []
+        self.show_details = []
 
     def run(self, item_ids: Optional[List[str]] = None) -> Dict:
         logger.task_start(self.task_name)
         self.new_episodes = []
+        self.show_details = []
         self.stats = {
             'total_subscribed': 0,
             'new_episodes': 0,
             'updated_shows': 0,
+            'notified_episodes': 0,
+            'unassigned_episodes': 0,
+            'total_episodes': 0,
             'failed': 0,
         }
 
@@ -43,11 +57,15 @@ class SubscriptionModule:
 
             for item in items:
                 try:
-                    new_eps = self._check_new_episodes(item, notified_data)
-                    if new_eps > 0:
-                        self.stats['new_episodes'] += new_eps
+                    detail = self._check_item_detail(item, notified_data)
+                    self.show_details.append(detail)
+                    if detail['new_count'] > 0:
+                        self.stats['new_episodes'] += detail['new_count']
                         self.stats['updated_shows'] += 1
-                        db.update_item(item)
+                    self.stats['notified_episodes'] += detail['notified_count']
+                    self.stats['unassigned_episodes'] += detail['unassigned_count']
+                    self.stats['total_episodes'] += detail['total_count']
+                    db.update_item(item)
                 except Exception as e:
                     self.stats['failed'] += 1
                     logger.error(f"检查更新失败 {item.title}: {e}", self.task_name)
@@ -61,12 +79,99 @@ class SubscriptionModule:
                            f"订阅{self.stats['total_subscribed']}部, "
                            f"新集{self.stats['new_episodes']}集, "
                            f"更新{self.stats['updated_shows']}部")
-            return self.stats
+            return {
+                **self.stats,
+                'new_episodes_list': self.new_episodes,
+                'show_details': self.show_details,
+            }
 
         except Exception as e:
             logger.error(f"订阅任务失败: {str(e)}", self.task_name)
             logger.task_end(self.task_name, False, str(e))
-            return self.stats
+            return {
+                **self.stats,
+                'new_episodes_list': self.new_episodes,
+                'show_details': self.show_details,
+            }
+
+    def _check_item_detail(self, item: MediaItem, notified_data: Dict[str, Set[str]]) -> Dict:
+        detail = {
+            'item_id': item.id,
+            'title': item.title,
+            'total_count': item.total_episodes,
+            'notified_count': 0,
+            'new_count': 0,
+            'unassigned_count': 0,
+            'watched_count': item.watched_episodes,
+            'seasons': [],
+        }
+
+        if item.media_type != MediaType.TV:
+            return detail
+
+        if item.id not in notified_data:
+            notified_data[item.id] = set()
+            self._mark_all_as_notified(item, notified_data)
+            logger.debug(f"首次订阅 {item.title}, 标记所有集为已通知", self.task_name)
+
+        notified_set = notified_data[item.id]
+
+        for season in item.seasons:
+            season_detail = {
+                'season_number': season.season_number,
+                'title': season.title,
+                'total': len(season.episodes),
+                'notified': 0,
+                'new': 0,
+                'unassigned': 0,
+                'watched': season.watched_episodes,
+                'episodes': [],
+            }
+
+            for ep in season.episodes:
+                ep_key = self._ep_key(season.season_number, ep.episode_number)
+                is_new = ep_key not in notified_set
+                is_unassigned = ep.air_date is None
+
+                if is_new:
+                    season_detail['new'] += 1
+                    notified_set.add(ep_key)
+                    self.new_episodes.append({
+                        'item_id': item.id,
+                        'title': item.title,
+                        'season': season.season_number,
+                        'episode': ep.episode_number,
+                        'ep_title': ep.title,
+                        'air_date': ep.air_date.isoformat() if ep.air_date else None,
+                        'is_new': True,
+                        'is_unassigned': is_unassigned,
+                        'watched': ep.watched,
+                    })
+                else:
+                    season_detail['notified'] += 1
+
+                if is_unassigned:
+                    season_detail['unassigned'] += 1
+
+                season_detail['episodes'].append({
+                    'season': season.season_number,
+                    'episode': ep.episode_number,
+                    'title': ep.title,
+                    'air_date': ep.air_date.isoformat() if ep.air_date else None,
+                    'watched': ep.watched,
+                    'notified': not is_new,
+                    'is_unassigned': is_unassigned,
+                })
+
+            detail['seasons'].append(season_detail)
+
+        detail['notified_count'] = sum(s['notified'] for s in detail['seasons'])
+        detail['new_count'] = sum(s['new'] for s in detail['seasons'])
+        detail['unassigned_count'] = sum(s['unassigned'] for s in detail['seasons'])
+
+        self._update_next_episode(item)
+
+        return detail
 
     def subscribe(self, item_id: str) -> bool:
         item = db.get_item(item_id)
@@ -127,6 +232,37 @@ class SubscriptionModule:
         for season in item.seasons:
             for ep in season.episodes:
                 notified_data[item.id].add(self._ep_key(season.season_number, ep.episode_number))
+
+    def sync_notified_with_item(self, item_id: str) -> int:
+        item = db.get_item(item_id)
+        if not item:
+            return 0
+
+        notified_data = self._load_notified()
+        if item.id not in notified_data:
+            return 0
+
+        valid_keys = set()
+        for season in item.seasons:
+            for ep in season.episodes:
+                valid_keys.add(self._ep_key(season.season_number, ep.episode_number))
+
+        old_count = len(notified_data[item.id])
+        notified_data[item.id] = notified_data[item.id] & valid_keys
+        new_count = len(notified_data[item.id])
+
+        self._save_notified(notified_data)
+        diff = old_count - new_count
+        if diff > 0:
+            logger.info(f"同步已通知记录 {item.title}: 清理 {diff} 条旧记录", self.task_name)
+        return diff
+
+    def sync_all_notified(self) -> int:
+        total_cleaned = 0
+        for item in db.get_all_items():
+            if item.media_type == MediaType.TV:
+                total_cleaned += self.sync_notified_with_item(item.id)
+        return total_cleaned
 
     def _check_new_episodes(self, item: MediaItem, notified_data: Dict[str, Set[str]]) -> int:
         if item.media_type != MediaType.TV:
@@ -248,6 +384,32 @@ class SubscriptionModule:
 
         self._save_notified(notified_data)
         return count
+
+    def get_subscription_summary(self) -> List[Dict]:
+        items = db.get_subscribed_items()
+        notified_data = self._load_notified()
+        summary = []
+
+        for item in items:
+            if item.media_type != MediaType.TV:
+                continue
+            notified_set = notified_data.get(item.id, set())
+            unassigned = sum(
+                1 for s in item.seasons for ep in s.episodes if ep.air_date is None
+            )
+            summary.append({
+                'item_id': item.id,
+                'title': item.title,
+                'total_episodes': item.total_episodes,
+                'notified_episodes': len(notified_set),
+                'watched_episodes': item.watched_episodes,
+                'unassigned_episodes': unassigned,
+                'progress': item.progress_percent,
+                'next_episode': item.next_episode_info or '待排期',
+                'next_episode_date': item.next_episode_date.isoformat() if item.next_episode_date else None,
+            })
+
+        return summary
 
 
 subscriber = SubscriptionModule()

@@ -6,6 +6,9 @@ from utils.helpers import load_json, save_json, ensure_dir
 class ConfigManager:
     _instance = None
     _config = None
+    _data_dir_override = None
+    _log_dir_override = None
+    _export_dir_override = None
 
     def __new__(cls):
         if cls._instance is None:
@@ -25,6 +28,21 @@ class ConfigManager:
         self.config_path = config_path
         self._config = load_json(config_path, {})
         self._init_directories()
+
+    def set_data_dir(self, dir_path: str) -> None:
+        abs_path = os.path.abspath(dir_path)
+        self._data_dir_override = abs_path
+        ensure_dir(abs_path)
+        cache_dir = os.path.join(abs_path, 'cache')
+        ensure_dir(cache_dir)
+
+    def set_log_dir(self, dir_path: str) -> None:
+        self._log_dir_override = os.path.abspath(dir_path)
+        ensure_dir(self._log_dir_override)
+
+    def set_export_dir(self, dir_path: str) -> None:
+        self._export_dir_override = os.path.abspath(dir_path)
+        ensure_dir(self._export_dir_override)
 
     def _init_directories(self) -> None:
         base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -60,16 +78,22 @@ class ConfigManager:
 
     @property
     def data_dir(self) -> str:
+        if self._data_dir_override:
+            return self._data_dir_override
         base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         return os.path.join(base_dir, self.get('general.data_dir', 'data'))
 
     @property
     def log_dir(self) -> str:
+        if self._log_dir_override:
+            return self._log_dir_override
         base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         return os.path.join(base_dir, self.get('general.log_dir', 'logs'))
 
     @property
     def export_dir(self) -> str:
+        if self._export_dir_override:
+            return self._export_dir_override
         base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         return os.path.join(base_dir, self.get('general.export_dir', 'exports'))
 

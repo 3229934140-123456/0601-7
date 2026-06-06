@@ -226,17 +226,24 @@ class ExportModule:
             },
             'this_week_episodes': [],
             'upcoming_episodes': [],
+            'unassigned_shows': [],
+            'subscribed_next_steps': [],
             'top_rated': [],
             'progress_summary': {},
+            'weekly_watched': 0,
         }
 
         for item in db.get_all_items():
             if item.media_type != MediaType.TV:
                 continue
 
+            has_unassigned = False
+            next_ep_info = None
+
             for season in item.seasons:
                 for ep in season.episodes:
                     if not ep.air_date:
+                        has_unassigned = True
                         continue
                     if start_of_week <= ep.air_date <= end_of_week:
                         report['this_week_episodes'].append({
@@ -247,6 +254,8 @@ class ExportModule:
                             'air_date': ep.air_date.isoformat(),
                             'watched': ep.watched,
                         })
+                        if ep.watched:
+                            report['weekly_watched'] += 1
                     elif ep.air_date > end_of_week:
                         report['upcoming_episodes'].append({
                             'title': item.title,
@@ -255,6 +264,25 @@ class ExportModule:
                             'ep_title': ep.title,
                             'air_date': ep.air_date.isoformat(),
                         })
+
+            if has_unassigned:
+                unassigned_count = sum(1 for s in item.seasons for ep in s.episodes if ep.air_date is None)
+                report['unassigned_shows'].append({
+                    'title': item.title,
+                    'unassigned_count': unassigned_count,
+                    'total_seasons': len(item.seasons),
+                    'subscribed': item.subscribed,
+                })
+
+            if item.subscribed:
+                next_ep = item.next_episode_info
+                status = '待排期' if '待排期' in (next_ep or '') else next_ep or '待排期'
+                report['subscribed_next_steps'].append({
+                    'title': item.title,
+                    'next_episode': status,
+                    'total_episodes': item.total_episodes,
+                    'watched_episodes': item.watched_episodes,
+                })
 
         all_items = db.get_all_items()
         rated = [i for i in all_items if i.rating]
@@ -275,6 +303,8 @@ class ExportModule:
         report['this_week_episodes'].sort(key=lambda x: x['air_date'])
         report['upcoming_episodes'].sort(key=lambda x: x['air_date'])
         report['upcoming_episodes'] = report['upcoming_episodes'][:20]
+        report['unassigned_shows'].sort(key=lambda x: x['unassigned_count'], reverse=True)
+        report['subscribed_next_steps'].sort(key=lambda x: x['title'])
 
         timestamp = datetime.now().strftime('%Y%m%d')
         filename = f"weekly_report_{timestamp}.json"
@@ -308,30 +338,61 @@ class ExportModule:
         lines.append(f"  订阅更新: {summary.get('subscribed', 0)} 部")
         lines.append("")
 
+        progress = report.get('progress_summary', {})
+        lines.append("[进度] 观看进度总览")
+        lines.append(f"  总集数: {progress.get('total_episodes', 0)}")
+        lines.append(f"  已看: {progress.get('watched_episodes', 0)}")
+        lines.append(f"  进度: {progress.get('progress_percent', 0)}%")
+        weekly_watched = report.get('weekly_watched', 0)
+        if weekly_watched > 0:
+            lines.append(f"  本周新看: {weekly_watched} 集")
+        lines.append("")
+
         this_week = report.get('this_week_episodes', [])
         lines.append(f"[本周] 本周更新 ({len(this_week)} 集)")
-        for ep in this_week[:10]:
-            watched_mark = "x" if ep.get('watched') else " "
-            lines.append(f"  [{watched_mark}] {ep['air_date']} "
-                        f"{ep['title']} S{ep['season']:02d}E{ep['episode']:02d} "
-                        f"- {ep.get('ep_title', '')}")
-        if len(this_week) > 10:
-            lines.append(f"  ... 还有 {len(this_week) - 10} 集")
+        if this_week:
+            for ep in this_week[:10]:
+                watched_mark = "x" if ep.get('watched') else " "
+                lines.append(f"  [{watched_mark}] {ep['air_date']} "
+                            f"{ep['title']} S{ep['season']:02d}E{ep['episode']:02d} "
+                            f"- {ep.get('ep_title', '')}")
+            if len(this_week) > 10:
+                lines.append(f"  ... 还有 {len(this_week) - 10} 集")
+        else:
+            lines.append("  (本周无已排期更新)")
         lines.append("")
 
         upcoming = report.get('upcoming_episodes', [])
         lines.append(f"[即将] 即将上映 ({len(upcoming)} 集)")
-        for ep in upcoming[:10]:
-            lines.append(f"  {ep['air_date']} "
-                        f"{ep['title']} S{ep['season']:02d}E{ep['episode']:02d} "
-                        f"- {ep.get('ep_title', '')}")
+        if upcoming:
+            for ep in upcoming[:10]:
+                lines.append(f"  {ep['air_date']} "
+                            f"{ep['title']} S{ep['season']:02d}E{ep['episode']:02d} "
+                            f"- {ep.get('ep_title', '')}")
+        else:
+            lines.append("  (暂无即将上映剧集)")
         lines.append("")
 
-        progress = report.get('progress_summary', {})
-        lines.append("[进度] 观看进度")
-        lines.append(f"  总集数: {progress.get('total_episodes', 0)}")
-        lines.append(f"  已看: {progress.get('watched_episodes', 0)}")
-        lines.append(f"  进度: {progress.get('progress_percent', 0)}%")
+        unassigned = report.get('unassigned_shows', [])
+        lines.append(f"[待排期] 未定播出日期 ({len(unassigned)} 部)")
+        if unassigned:
+            for show in unassigned[:10]:
+                sub_mark = "[订]" if show.get('subscribed') else "   "
+                lines.append(f"  {sub_mark} {show['title']} - {show['unassigned_count']} 集待排期 ({show['total_seasons']}季)")
+            if len(unassigned) > 10:
+                lines.append(f"  ... 还有 {len(unassigned) - 10} 部")
+        else:
+            lines.append("  (所有剧集均已排期)")
+        lines.append("")
+
+        sub_next = report.get('subscribed_next_steps', [])
+        lines.append(f"[订阅] 订阅剧集下一步 ({len(sub_next)} 部)")
+        if sub_next:
+            for show in sub_next[:10]:
+                prog = f"{show['watched_episodes']}/{show['total_episodes']}"
+                lines.append(f"  - {show['title']}: {show['next_episode']} (进度: {prog})")
+        else:
+            lines.append("  (暂无订阅剧集)")
         lines.append("")
 
         top_rated = report.get('top_rated', [])

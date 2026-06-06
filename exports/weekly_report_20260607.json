@@ -1,20 +1,48 @@
 {
-  "generated_at": "2026-06-07T06:21:18.512099",
+  "generated_at": "2026-06-07T06:40:13.551749",
   "period": {
     "start": "2026-06-01",
     "end": "2026-06-07"
   },
   "summary": {
-    "total_items": 5,
-    "movies": 2,
+    "total_items": 6,
+    "movies": 3,
     "tv_shows": 3,
     "wishlist": 5,
-    "watching": 0,
+    "watching": 1,
     "watched": 0,
     "subscribed": 1
   },
   "this_week_episodes": [],
   "upcoming_episodes": [],
+  "unassigned_shows": [
+    {
+      "title": "老友记",
+      "unassigned_count": 240,
+      "total_seasons": 10,
+      "subscribed": true
+    },
+    {
+      "title": "权力的游戏",
+      "unassigned_count": 73,
+      "total_seasons": 8,
+      "subscribed": false
+    },
+    {
+      "title": "三体",
+      "unassigned_count": 30,
+      "total_seasons": 1,
+      "subscribed": false
+    }
+  ],
+  "subscribed_next_steps": [
+    {
+      "title": "老友记",
+      "next_episode": "待排期",
+      "total_episodes": 240,
+      "watched_episodes": 1
+    }
+  ],
   "top_rated": [
     {
       "title": "老友记",
@@ -37,14 +65,20 @@
       "year": 2011
     },
     {
+      "title": "阿甘正传",
+      "rating": 9.5,
+      "year": 1994
+    },
+    {
       "title": "三体",
       "rating": 8.7,
       "year": 2023
     }
   ],
   "progress_summary": {
-    "total_episodes": 228,
-    "watched_episodes": 0,
-    "progress_percent": 0.0
-  }
+    "total_episodes": 343,
+    "watched_episodes": 1,
+    "progress_percent": 0.3
+  },
+  "weekly_watched": 0
 }

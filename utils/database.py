@@ -19,6 +19,10 @@ class MediaDatabase:
             self.items: Dict[str, MediaItem] = {}
             self.load()
 
+    def reload(self) -> None:
+        self.items = {}
+        self.load()
+
     def load(self) -> None:
         db_path = os.path.join(config.data_dir, 'media_database.json')
         data = load_json(db_path, [])

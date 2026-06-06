@@ -245,8 +245,6 @@ WELL_KNOWN_MEDIA = {
 class MatchModule:
     def __init__(self):
         self.task_name = "match"
-        self.cache_dir = os.path.join(config.data_dir, 'cache')
-        os.makedirs(self.cache_dir, exist_ok=True)
         self.stats = {
             'total': 0,
             'matched': 0,
@@ -254,9 +252,19 @@ class MatchModule:
             'failed': 0,
         }
 
+    @property
+    def cache_dir(self) -> str:
+        cache_path = os.path.join(config.data_dir, 'cache')
+        os.makedirs(cache_path, exist_ok=True)
+        return cache_path
+
+    def reload(self) -> None:
+        pass
+
     def run(self, item_ids: Optional[List[str]] = None, full_match: bool = False) -> Dict:
         logger.task_start(self.task_name)
         self.stats = {'total': 0, 'matched': 0, 'updated': 0, 'failed': 0}
+        sync_notified_count = 0
 
         try:
             if item_ids:
@@ -271,10 +279,16 @@ class MatchModule:
                     result = self._match_item(item, full_match)
                     if result:
                         self.stats['matched'] += 1
+                        old_total = item.total_episodes
                         old_state = self._snapshot_item(item)
                         self._apply_match_result(item, result)
                         if self._has_changed(old_state, item):
                             self.stats['updated'] += 1
+                            new_total = item.total_episodes
+                            if old_total != new_total and item.subscribed:
+                                from modules.subscriber import subscriber
+                                cleaned = subscriber.sync_notified_with_item(item.id)
+                                sync_notified_count += cleaned
                         db.update_item(item)
                     else:
                         logger.debug(f"未找到匹配: {item.title}", self.task_name)
@@ -285,8 +299,10 @@ class MatchModule:
             if self.stats['updated'] > 0:
                 db.save()
 
+            extra_info = f", 同步通知记录{sync_notified_count}条" if sync_notified_count > 0 else ""
             logger.task_end(self.task_name, True,
-                           f"匹配{self.stats['matched']}条, 更新{self.stats['updated']}条, 失败{self.stats['failed']}条")
+                           f"匹配{self.stats['matched']}条, 更新{self.stats['updated']}条, "
+                           f"失败{self.stats['failed']}条{extra_info}")
             return self.stats
 
         except Exception as e:
