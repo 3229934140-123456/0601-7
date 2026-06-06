@@ -1,0 +1,24 @@
+{
+  "original_title": "The Shawshank Redemption",
+  "media_type": "movie",
+  "year": 1994,
+  "genres": [
+    "剧情",
+    "犯罪"
+  ],
+  "directors": [
+    "弗兰克·德拉邦特"
+  ],
+  "cast": [
+    "蒂姆·罗宾斯",
+    "摩根·弗里曼",
+    "鲍勃·冈顿"
+  ],
+  "rating": 9.7,
+  "rating_count": 2800000,
+  "runtime": 142,
+  "status": "已上映",
+  "overview": "一场谋杀案使银行家安迪蒙冤入狱，在监狱的岁月里，他与瑞德结下深厚的友谊，并用智慧和信念诠释了希望的意义。",
+  "seasons": [],
+  "_cached_at": "2026-06-07T06:18:50.027649"
+}

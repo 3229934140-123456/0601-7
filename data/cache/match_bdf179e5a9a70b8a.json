@@ -1,25 +1,26 @@
 {
-  "title": "霸王别姬",
   "original_title": "霸王别姬",
-  "overview": "这是《霸王别姬》的简介。",
-  "rating": 6.7,
-  "rating_count": 73178,
+  "media_type": "movie",
+  "year": 1993,
   "genres": [
-    "恐怖",
-    "奇幻"
+    "剧情",
+    "爱情",
+    "同性"
   ],
   "directors": [
-    "导演甲"
+    "陈凯歌"
   ],
   "cast": [
-    "演员E",
-    "演员C",
-    "演员A"
+    "张国荣",
+    "张丰毅",
+    "巩俐",
+    "葛优"
   ],
-  "runtime": 132,
+  "rating": 9.6,
+  "rating_count": 2100000,
+  "runtime": 171,
   "status": "已上映",
-  "media_type": "movie",
-  "first_air_date": "2022-06-04",
+  "overview": "段小楼与程蝶衣是一对打小一起长大的师兄弟，两人一个演生，一个饰旦，一向配合天衣无缝，尤其一出《霸王别姬》，更是誉满京城。",
   "seasons": [],
-  "_cached_at": "2026-06-07T06:06:51.694779"
+  "_cached_at": "2026-06-07T06:18:50.044076"
 }

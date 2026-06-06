@@ -1,25 +1,93 @@
 {
-  "title": "三体",
   "original_title": "三体",
-  "overview": "这是《三体》的简介。",
-  "rating": 8.6,
-  "rating_count": 44624,
+  "media_type": "tv",
+  "year": 2023,
   "genres": [
     "剧情",
-    "奇幻"
+    "科幻"
   ],
   "directors": [
-    "导演甲"
+    "杨磊"
   ],
   "cast": [
-    "演员E",
-    "演员D",
-    "演员A"
+    "张鲁一",
+    "于和伟",
+    "陈瑾",
+    "王子文"
   ],
-  "runtime": 143,
-  "status": "已上映",
-  "media_type": "movie",
-  "first_air_date": "2021-06-25",
-  "seasons": [],
-  "_cached_at": "2026-06-07T06:06:51.788894"
+  "rating": 8.7,
+  "rating_count": 900000,
+  "runtime": 45,
+  "status": "已完结",
+  "overview": "纳米科学家汪淼进入神秘的《三体》游戏，并在科学边界组织的调查中，逐渐揭开一个关乎人类命运的巨大秘密。",
+  "total_seasons": 1,
+  "seasons": [
+    {
+      "season_number": 1,
+      "title": "第1季",
+      "episodes": [
+        {
+          "season_number": 1,
+          "episode_number": 1,
+          "title": "第1集"
+        },
+        {
+          "season_number": 1,
+          "episode_number": 2,
+          "title": "第2集"
+        },
+        {
+          "season_number": 1,
+          "episode_number": 3,
+          "title": "第3集"
+        },
+        {
+          "season_number": 1,
+          "episode_number": 4,
+          "title": "第4集"
+        },
+        {
+          "season_number": 1,
+          "episode_number": 5,
+          "title": "第5集"
+        },
+        {
+          "season_number": 1,
+          "episode_number": 6,
+          "title": "第6集"
+        },
+        {
+          "season_number": 1,
+          "episode_number": 7,
+          "title": "第7集"
+        },
+        {
+          "season_number": 1,
+          "episode_number": 8,
+          "title": "第8集"
+        },
+        {
+          "season_number": 1,
+          "episode_number": 9,
+          "title": "第9集"
+        },
+        {
+          "season_number": 1,
+          "episode_number": 10,
+          "title": "第10集"
+        },
+        {
+          "season_number": 1,
+          "episode_number": 11,
+          "title": "第11集"
+        },
+        {
+          "season_number": 1,
+          "episode_number": 12,
+          "title": "第12集"
+        }
+      ]
+    }
+  ],
+  "_cached_at": "2026-06-07T06:18:50.011489"
 }

@@ -1,7 +1,7 @@
 import os
 import json
 from datetime import date, datetime, timedelta
-from typing import List, Dict, Optional
+from typing import List, Dict, Optional, Set
 from models.media import MediaItem, MediaType, WatchStatus, Episode
 from utils.helpers import save_json, load_json
 from utils.config_manager import config
@@ -12,7 +12,7 @@ from modules.logger_module import logger
 class SubscriptionModule:
     def __init__(self):
         self.task_name = "subscription"
-        self.last_check_file = os.path.join(config.data_dir, 'last_subscription_check.json')
+        self.notified_file = os.path.join(config.data_dir, 'notified_episodes.json')
         self.new_episodes: List[Dict] = []
         self.stats = {
             'total_subscribed': 0,
@@ -39,9 +39,11 @@ class SubscriptionModule:
 
             self.stats['total_subscribed'] = len(items)
 
+            notified_data = self._load_notified()
+
             for item in items:
                 try:
-                    new_eps = self._check_new_episodes(item)
+                    new_eps = self._check_new_episodes(item, notified_data)
                     if new_eps > 0:
                         self.stats['new_episodes'] += new_eps
                         self.stats['updated_shows'] += 1
@@ -50,10 +52,10 @@ class SubscriptionModule:
                     self.stats['failed'] += 1
                     logger.error(f"检查更新失败 {item.title}: {e}", self.task_name)
 
+            self._save_notified(notified_data)
+
             if self.stats['updated_shows'] > 0:
                 db.save()
-
-            self._save_last_check()
 
             logger.task_end(self.task_name, True,
                            f"订阅{self.stats['total_subscribed']}部, "
@@ -77,6 +79,12 @@ class SubscriptionModule:
             return True
 
         item.subscribed = True
+
+        notified_data = self._load_notified()
+        if item.id not in notified_data:
+            self._mark_all_as_notified(item, notified_data)
+            self._save_notified(notified_data)
+
         db.update_item(item)
         db.save()
         logger.info(f"订阅成功: {item.title}", self.task_name)
@@ -96,26 +104,57 @@ class SubscriptionModule:
         logger.info(f"取消订阅: {item.title}", self.task_name)
         return True
 
-    def _check_new_episodes(self, item: MediaItem) -> int:
-        if item.media_type != MediaType.TV:
-            return 0
+    def _load_notified(self) -> Dict[str, Set[str]]:
+        data = load_json(self.notified_file, {})
+        result = {}
+        for item_id, eps in data.items():
+            result[item_id] = set(eps)
+        return result
 
-        last_check = self._get_last_check_time(item.id)
-        new_count = 0
+    def _save_notified(self, notified_data: Dict[str, Set[str]]) -> None:
+        data = {}
+        for item_id, eps in notified_data.items():
+            data[item_id] = sorted(list(eps))
+        save_json(data, self.notified_file)
+
+    def _ep_key(self, season: int, episode: int) -> str:
+        return f"S{season:02d}E{episode:02d}"
+
+    def _mark_all_as_notified(self, item: MediaItem, notified_data: Dict[str, Set[str]]) -> None:
+        if item.id not in notified_data:
+            notified_data[item.id] = set()
 
         for season in item.seasons:
             for ep in season.episodes:
-                if ep.air_date:
-                    if last_check and ep.air_date > last_check.date():
-                        new_count += 1
-                        self.new_episodes.append({
-                            'item_id': item.id,
-                            'title': item.title,
-                            'season': season.season_number,
-                            'episode': ep.episode_number,
-                            'ep_title': ep.title,
-                            'air_date': ep.air_date.isoformat(),
-                        })
+                notified_data[item.id].add(self._ep_key(season.season_number, ep.episode_number))
+
+    def _check_new_episodes(self, item: MediaItem, notified_data: Dict[str, Set[str]]) -> int:
+        if item.media_type != MediaType.TV:
+            return 0
+
+        if item.id not in notified_data:
+            notified_data[item.id] = set()
+            self._mark_all_as_notified(item, notified_data)
+            logger.debug(f"首次订阅 {item.title}, 标记所有集为已通知", self.task_name)
+            return 0
+
+        new_count = 0
+        notified_set = notified_data[item.id]
+
+        for season in item.seasons:
+            for ep in season.episodes:
+                ep_key = self._ep_key(season.season_number, ep.episode_number)
+                if ep_key not in notified_set:
+                    new_count += 1
+                    notified_set.add(ep_key)
+                    self.new_episodes.append({
+                        'item_id': item.id,
+                        'title': item.title,
+                        'season': season.season_number,
+                        'episode': ep.episode_number,
+                        'ep_title': ep.title,
+                        'air_date': ep.air_date.isoformat() if ep.air_date else None,
+                    })
 
         self._update_next_episode(item)
 
@@ -139,21 +178,6 @@ class SubscriptionModule:
         else:
             item.next_episode_date = None
             item.next_episode_info = ""
-
-    def _get_last_check_time(self, item_id: str) -> Optional[datetime]:
-        data = load_json(self.last_check_file, {})
-        last = data.get(item_id)
-        if last:
-            return datetime.fromisoformat(last)
-        return None
-
-    def _save_last_check(self) -> None:
-        data = load_json(self.last_check_file, {})
-        now = datetime.now().isoformat()
-        subscribed = db.get_subscribed_items()
-        for item in subscribed:
-            data[item.id] = now
-        save_json(data, self.last_check_file)
 
     def get_wishlist(self) -> List[MediaItem]:
         return db.get_items_by_status(WatchStatus.WISHLIST)
@@ -184,20 +208,45 @@ class SubscriptionModule:
                             'air_date': ep.air_date.isoformat(),
                         })
 
-        upcoming.sort(key=lambda x: x['air_date'])
+        upcoming.sort(key=lambda x: x['air_date'] if x['air_date'] else '')
         return upcoming
 
     def subscribe_all_watching(self) -> int:
         watching = db.get_items_by_status(WatchStatus.WATCHING)
+        notified_data = self._load_notified()
         count = 0
+
         for item in watching:
             if not item.subscribed and item.media_type == MediaType.TV:
                 item.subscribed = True
                 db.update_item(item)
                 count += 1
+                if item.id not in notified_data:
+                    self._mark_all_as_notified(item, notified_data)
+
         if count > 0:
             db.save()
+            self._save_notified(notified_data)
+
         logger.info(f"批量订阅 {count} 部在看剧集", self.task_name)
+        return count
+
+    def reset_notified(self, item_id: Optional[str] = None) -> int:
+        notified_data = self._load_notified()
+        count = 0
+
+        if item_id:
+            if item_id in notified_data:
+                count = len(notified_data[item_id])
+                del notified_data[item_id]
+                logger.info(f"重置 {item_id} 的已通知记录 ({count}集)", self.task_name)
+        else:
+            for eps in notified_data.values():
+                count += len(eps)
+            notified_data.clear()
+            logger.info(f"重置所有已通知记录 ({count}集)", self.task_name)
+
+        self._save_notified(notified_data)
         return count
 
 

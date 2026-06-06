@@ -1,29 +1,27 @@
 {
-  "original_title": "Friends",
+  "original_title": "Game of Thrones",
   "media_type": "tv",
-  "year": 1994,
+  "year": 2011,
   "genres": [
-    "喜剧",
-    "爱情"
+    "剧情",
+    "奇幻",
+    "冒险"
   ],
   "directors": [
-    "大卫·克莱恩",
-    "玛尔塔·考夫曼"
+    "大卫·贝尼奥夫",
+    "D·B·威斯"
   ],
   "cast": [
-    "詹妮弗·安妮斯顿",
-    "柯特妮·考克斯",
-    "丽莎·库卓",
-    "马特·勒布朗",
-    "马修·派瑞",
-    "大卫·修蒙"
+    "艾米莉亚·克拉克",
+    "基特·哈灵顿",
+    "彼特·丁拉基"
   ],
-  "rating": 9.8,
-  "rating_count": 600000,
-  "runtime": 22,
+  "rating": 9.5,
+  "rating_count": 800000,
+  "runtime": 60,
   "status": "已完结",
-  "overview": "莫妮卡、钱德勒、瑞秋、菲比、乔伊和罗斯是彼此最好的朋友，一起走过十年岁月的点点滴滴。",
-  "total_seasons": 10,
+  "overview": "七大王国的贵族家族争夺铁王座的控制权，而一个被遗忘的种族在北方苏醒。该剧改编自乔治·R·R·马丁的奇幻小说《冰与火之歌》。",
+  "total_seasons": 8,
   "seasons": [
     {
       "season_number": 1,
@@ -552,139 +550,7 @@
           "title": "第12集"
         }
       ]
-    },
-    {
-      "season_number": 9,
-      "title": "第9季",
-      "episodes": [
-        {
-          "season_number": 9,
-          "episode_number": 1,
-          "title": "第1集"
-        },
-        {
-          "season_number": 9,
-          "episode_number": 2,
-          "title": "第2集"
-        },
-        {
-          "season_number": 9,
-          "episode_number": 3,
-          "title": "第3集"
-        },
-        {
-          "season_number": 9,
-          "episode_number": 4,
-          "title": "第4集"
-        },
-        {
-          "season_number": 9,
-          "episode_number": 5,
-          "title": "第5集"
-        },
-        {
-          "season_number": 9,
-          "episode_number": 6,
-          "title": "第6集"
-        },
-        {
-          "season_number": 9,
-          "episode_number": 7,
-          "title": "第7集"
-        },
-        {
-          "season_number": 9,
-          "episode_number": 8,
-          "title": "第8集"
-        },
-        {
-          "season_number": 9,
-          "episode_number": 9,
-          "title": "第9集"
-        },
-        {
-          "season_number": 9,
-          "episode_number": 10,
-          "title": "第10集"
-        },
-        {
-          "season_number": 9,
-          "episode_number": 11,
-          "title": "第11集"
-        },
-        {
-          "season_number": 9,
-          "episode_number": 12,
-          "title": "第12集"
-        }
-      ]
-    },
-    {
-      "season_number": 10,
-      "title": "第10季",
-      "episodes": [
-        {
-          "season_number": 10,
-          "episode_number": 1,
-          "title": "第1集"
-        },
-        {
-          "season_number": 10,
-          "episode_number": 2,
-          "title": "第2集"
-        },
-        {
-          "season_number": 10,
-          "episode_number": 3,
-          "title": "第3集"
-        },
-        {
-          "season_number": 10,
-          "episode_number": 4,
-          "title": "第4集"
-        },
-        {
-          "season_number": 10,
-          "episode_number": 5,
-          "title": "第5集"
-        },
-        {
-          "season_number": 10,
-          "episode_number": 6,
-          "title": "第6集"
-        },
-        {
-          "season_number": 10,
-          "episode_number": 7,
-          "title": "第7集"
-        },
-        {
-          "season_number": 10,
-          "episode_number": 8,
-          "title": "第8集"
-        },
-        {
-          "season_number": 10,
-          "episode_number": 9,
-          "title": "第9集"
-        },
-        {
-          "season_number": 10,
-          "episode_number": 10,
-          "title": "第10集"
-        },
-        {
-          "season_number": 10,
-          "episode_number": 11,
-          "title": "第11集"
-        },
-        {
-          "season_number": 10,
-          "episode_number": 12,
-          "title": "第12集"
-        }
-      ]
     }
   ],
-  "_cached_at": "2026-06-07T06:18:49.992624"
+  "_cached_at": "2026-06-07T06:18:49.973478"
 }

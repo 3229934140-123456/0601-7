@@ -4,6 +4,10 @@ import os
 import argparse
 from datetime import date
 
+if sys.platform == 'win32':
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+    sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from modules import importer, matcher, subscriber, calendar_mod, notifier, exporter, logger, scheduler
@@ -172,8 +176,23 @@ class MovieTrackerCLI:
     def cmd_notify(self, args):
         title = args.title
         message = args.message if hasattr(args, 'message') else ''
-        success = notifier.send_notification(title, message)
-        print("通知发送成功" if success else "通知发送失败")
+        result = notifier.send_notification(title, message)
+
+        print("\n通知发送结果:")
+        print(f"  总体状态: {'成功' if result.get('success') else '失败'}")
+        print(f"  成功渠道: {result.get('success_count', 0)}/{result.get('total_channels', 0)}")
+
+        channels = result.get('channels', {})
+        if channels:
+            print("\n  各渠道详情:")
+            for ch_name, ch_result in channels.items():
+                status = "成功" if ch_result.get('success') else "失败"
+                error = f" - {ch_result.get('error', '')}" if not ch_result.get('success') else ""
+                print(f"    {ch_name}: {status}{error}")
+
+        if result.get('error'):
+            print(f"  错误: {result['error']}")
+        print()
 
     def cmd_logs(self, args):
         lines = args.lines if hasattr(args, 'lines') else 50

@@ -130,6 +130,7 @@ class ImportModule:
 
         title = re.sub(r'\s*\(\d{4}\)\s*', ' ', title).strip()
         title = re.sub(r'\s*[Ss]\d+[Ee]\d+\s*', ' ', title).strip()
+        title = re.sub(r'\s*[Ss]\d+\s*', ' ', title).strip()
         title = re.sub(r'\s*第\s*\d+\s*季.*?第\s*\d+\s*集\s*', ' ', title).strip()
         title = re.sub(r'\s*第\s*\d+\s*季\s*', ' ', title).strip()
         title = re.sub(r'\s+', ' ', title).strip()

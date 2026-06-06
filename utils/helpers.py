@@ -60,8 +60,9 @@ def parse_season_episode(text: str) -> tuple:
     patterns = [
         r'[Ss](\d+)[Ee](\d+)',
         r'第\s*(\d+)\s*季.*?第\s*(\d+)\s*集',
-        r'第\s*(\d+)\s*季',
         r'Season\s+(\d+).*?Episode\s+(\d+)',
+        r'[Ss](\d+)\b',
+        r'第\s*(\d+)\s*季',
         r'Season\s+(\d+)',
     ]
     for pattern in patterns:
