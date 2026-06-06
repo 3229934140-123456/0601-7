@@ -89,7 +89,10 @@ class MovieTrackerCLI:
         elif view == 'week':
             week_data = calendar_mod.generate_week_calendar()
             print(f"\n本周追剧日历 ({week_data['start_date']} ~ {week_data['end_date']})")
-            print(f"共 {week_data['total_episodes']} 集更新\n")
+            print(f"共 {week_data['total_episodes']} 集更新")
+            if week_data.get('unassigned_count', 0) > 0:
+                print(f"待排期 {week_data['unassigned_count']} 集")
+            print()
             for day in week_data['days']:
                 marker = " [今天]" if day['is_today'] else ""
                 print(f"{day['weekday_cn']} ({day['date']}){marker}")
@@ -97,6 +100,15 @@ class MovieTrackerCLI:
                     print(f"  - {ep['title']} S{ep['season']:02d}E{ep['episode']:02d}")
                 if not day['episodes']:
                     print("  (无更新)")
+                print()
+
+            if week_data.get('unassigned_episodes'):
+                print("待排期剧集:")
+                for ep in week_data['unassigned_episodes'][:10]:
+                    ep_title = f" - {ep['ep_title']}" if ep.get('ep_title') else ""
+                    print(f"  - {ep['title']} S{ep['season']:02d}E{ep['episode']:02d}{ep_title}")
+                if len(week_data['unassigned_episodes']) > 10:
+                    print(f"  ... 还有 {len(week_data['unassigned_episodes']) - 10} 集")
                 print()
 
     def cmd_list(self, args):

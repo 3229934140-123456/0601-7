@@ -135,26 +135,6 @@
             "watched_date": null,
             "runtime": null,
             "overview": ""
-          },
-          {
-            "season_number": 1,
-            "episode_number": 11,
-            "title": "第11集",
-            "air_date": null,
-            "watched": false,
-            "watched_date": null,
-            "runtime": null,
-            "overview": ""
-          },
-          {
-            "season_number": 1,
-            "episode_number": 12,
-            "title": "第12集",
-            "air_date": null,
-            "watched": false,
-            "watched_date": null,
-            "runtime": null,
-            "overview": ""
           }
         ]
       },
@@ -259,26 +239,6 @@
             "season_number": 2,
             "episode_number": 10,
             "title": "第10集",
-            "air_date": null,
-            "watched": false,
-            "watched_date": null,
-            "runtime": null,
-            "overview": ""
-          },
-          {
-            "season_number": 2,
-            "episode_number": 11,
-            "title": "第11集",
-            "air_date": null,
-            "watched": false,
-            "watched_date": null,
-            "runtime": null,
-            "overview": ""
-          },
-          {
-            "season_number": 2,
-            "episode_number": 12,
-            "title": "第12集",
             "air_date": null,
             "watched": false,
             "watched_date": null,
@@ -393,26 +353,6 @@
             "watched_date": null,
             "runtime": null,
             "overview": ""
-          },
-          {
-            "season_number": 3,
-            "episode_number": 11,
-            "title": "第11集",
-            "air_date": null,
-            "watched": false,
-            "watched_date": null,
-            "runtime": null,
-            "overview": ""
-          },
-          {
-            "season_number": 3,
-            "episode_number": 12,
-            "title": "第12集",
-            "air_date": null,
-            "watched": false,
-            "watched_date": null,
-            "runtime": null,
-            "overview": ""
           }
         ]
       },
@@ -517,26 +457,6 @@
             "season_number": 4,
             "episode_number": 10,
             "title": "第10集",
-            "air_date": null,
-            "watched": false,
-            "watched_date": null,
-            "runtime": null,
-            "overview": ""
-          },
-          {
-            "season_number": 4,
-            "episode_number": 11,
-            "title": "第11集",
-            "air_date": null,
-            "watched": false,
-            "watched_date": null,
-            "runtime": null,
-            "overview": ""
-          },
-          {
-            "season_number": 4,
-            "episode_number": 12,
-            "title": "第12集",
             "air_date": null,
             "watched": false,
             "watched_date": null,
@@ -651,26 +571,6 @@
             "watched_date": null,
             "runtime": null,
             "overview": ""
-          },
-          {
-            "season_number": 5,
-            "episode_number": 11,
-            "title": "第11集",
-            "air_date": null,
-            "watched": false,
-            "watched_date": null,
-            "runtime": null,
-            "overview": ""
-          },
-          {
-            "season_number": 5,
-            "episode_number": 12,
-            "title": "第12集",
-            "air_date": null,
-            "watched": false,
-            "watched_date": null,
-            "runtime": null,
-            "overview": ""
           }
         ]
       },
@@ -780,26 +680,6 @@
             "watched_date": null,
             "runtime": null,
             "overview": ""
-          },
-          {
-            "season_number": 6,
-            "episode_number": 11,
-            "title": "第11集",
-            "air_date": null,
-            "watched": false,
-            "watched_date": null,
-            "runtime": null,
-            "overview": ""
-          },
-          {
-            "season_number": 6,
-            "episode_number": 12,
-            "title": "第12集",
-            "air_date": null,
-            "watched": false,
-            "watched_date": null,
-            "runtime": null,
-            "overview": ""
           }
         ]
       },
@@ -879,56 +759,6 @@
             "watched_date": null,
             "runtime": null,
             "overview": ""
-          },
-          {
-            "season_number": 7,
-            "episode_number": 8,
-            "title": "第8集",
-            "air_date": null,
-            "watched": false,
-            "watched_date": null,
-            "runtime": null,
-            "overview": ""
-          },
-          {
-            "season_number": 7,
-            "episode_number": 9,
-            "title": "第9集",
-            "air_date": null,
-            "watched": false,
-            "watched_date": null,
-            "runtime": null,
-            "overview": ""
-          },
-          {
-            "season_number": 7,
-            "episode_number": 10,
-            "title": "第10集",
-            "air_date": null,
-            "watched": false,
-            "watched_date": null,
-            "runtime": null,
-            "overview": ""
-          },
-          {
-            "season_number": 7,
-            "episode_number": 11,
-            "title": "第11集",
-            "air_date": null,
-            "watched": false,
-            "watched_date": null,
-            "runtime": null,
-            "overview": ""
-          },
-          {
-            "season_number": 7,
-            "episode_number": 12,
-            "title": "第12集",
-            "air_date": null,
-            "watched": false,
-            "watched_date": null,
-            "runtime": null,
-            "overview": ""
           }
         ]
       },
@@ -998,66 +828,6 @@
             "watched_date": null,
             "runtime": null,
             "overview": ""
-          },
-          {
-            "season_number": 8,
-            "episode_number": 7,
-            "title": "第7集",
-            "air_date": null,
-            "watched": false,
-            "watched_date": null,
-            "runtime": null,
-            "overview": ""
-          },
-          {
-            "season_number": 8,
-            "episode_number": 8,
-            "title": "第8集",
-            "air_date": null,
-            "watched": false,
-            "watched_date": null,
-            "runtime": null,
-            "overview": ""
-          },
-          {
-            "season_number": 8,
-            "episode_number": 9,
-            "title": "第9集",
-            "air_date": null,
-            "watched": false,
-            "watched_date": null,
-            "runtime": null,
-            "overview": ""
-          },
-          {
-            "season_number": 8,
-            "episode_number": 10,
-            "title": "第10集",
-            "air_date": null,
-            "watched": false,
-            "watched_date": null,
-            "runtime": null,
-            "overview": ""
-          },
-          {
-            "season_number": 8,
-            "episode_number": 11,
-            "title": "第11集",
-            "air_date": null,
-            "watched": false,
-            "watched_date": null,
-            "runtime": null,
-            "overview": ""
-          },
-          {
-            "season_number": 8,
-            "episode_number": 12,
-            "title": "第12集",
-            "air_date": null,
-            "watched": false,
-            "watched_date": null,
-            "runtime": null,
-            "overview": ""
           }
         ]
       }
@@ -1068,7 +838,7 @@
     "notes": "",
     "source_file": "test_input.txt",
     "external_ids": {},
-    "last_updated": "2026-06-07T06:18:49.974889",
+    "last_updated": "2026-06-07T06:29:21.848110",
     "subscribed": false,
     "next_episode_date": null,
     "next_episode_info": ""
@@ -1231,6 +1001,126 @@
             "watched_date": null,
             "runtime": null,
             "overview": ""
+          },
+          {
+            "season_number": 1,
+            "episode_number": 13,
+            "title": "第13集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 1,
+            "episode_number": 14,
+            "title": "第14集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 1,
+            "episode_number": 15,
+            "title": "第15集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 1,
+            "episode_number": 16,
+            "title": "第16集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 1,
+            "episode_number": 17,
+            "title": "第17集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 1,
+            "episode_number": 18,
+            "title": "第18集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 1,
+            "episode_number": 19,
+            "title": "第19集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 1,
+            "episode_number": 20,
+            "title": "第20集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 1,
+            "episode_number": 21,
+            "title": "第21集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 1,
+            "episode_number": 22,
+            "title": "第22集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 1,
+            "episode_number": 23,
+            "title": "第23集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 1,
+            "episode_number": 24,
+            "title": "第24集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
           }
         ]
       },
@@ -1266,8 +1156,8 @@
             "episode_number": 3,
             "title": "第3集",
             "air_date": null,
-            "watched": false,
-            "watched_date": null,
+            "watched": true,
+            "watched_date": "2026-06-07",
             "runtime": null,
             "overview": ""
           },
@@ -1355,6 +1245,126 @@
             "season_number": 2,
             "episode_number": 12,
             "title": "第12集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 2,
+            "episode_number": 13,
+            "title": "第13集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 2,
+            "episode_number": 14,
+            "title": "第14集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 2,
+            "episode_number": 15,
+            "title": "第15集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 2,
+            "episode_number": 16,
+            "title": "第16集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 2,
+            "episode_number": 17,
+            "title": "第17集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 2,
+            "episode_number": 18,
+            "title": "第18集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 2,
+            "episode_number": 19,
+            "title": "第19集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 2,
+            "episode_number": 20,
+            "title": "第20集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 2,
+            "episode_number": 21,
+            "title": "第21集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 2,
+            "episode_number": 22,
+            "title": "第22集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 2,
+            "episode_number": 23,
+            "title": "第23集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 2,
+            "episode_number": 24,
+            "title": "第24集",
             "air_date": null,
             "watched": false,
             "watched_date": null,
@@ -1489,6 +1499,126 @@
             "watched_date": null,
             "runtime": null,
             "overview": ""
+          },
+          {
+            "season_number": 3,
+            "episode_number": 13,
+            "title": "第13集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 3,
+            "episode_number": 14,
+            "title": "第14集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 3,
+            "episode_number": 15,
+            "title": "第15集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 3,
+            "episode_number": 16,
+            "title": "第16集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 3,
+            "episode_number": 17,
+            "title": "第17集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 3,
+            "episode_number": 18,
+            "title": "第18集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 3,
+            "episode_number": 19,
+            "title": "第19集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 3,
+            "episode_number": 20,
+            "title": "第20集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 3,
+            "episode_number": 21,
+            "title": "第21集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 3,
+            "episode_number": 22,
+            "title": "第22集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 3,
+            "episode_number": 23,
+            "title": "第23集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 3,
+            "episode_number": 24,
+            "title": "第24集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
           }
         ]
       },
@@ -1613,6 +1743,126 @@
             "season_number": 4,
             "episode_number": 12,
             "title": "第12集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 4,
+            "episode_number": 13,
+            "title": "第13集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 4,
+            "episode_number": 14,
+            "title": "第14集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 4,
+            "episode_number": 15,
+            "title": "第15集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 4,
+            "episode_number": 16,
+            "title": "第16集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 4,
+            "episode_number": 17,
+            "title": "第17集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 4,
+            "episode_number": 18,
+            "title": "第18集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 4,
+            "episode_number": 19,
+            "title": "第19集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 4,
+            "episode_number": 20,
+            "title": "第20集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 4,
+            "episode_number": 21,
+            "title": "第21集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 4,
+            "episode_number": 22,
+            "title": "第22集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 4,
+            "episode_number": 23,
+            "title": "第23集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 4,
+            "episode_number": 24,
+            "title": "第24集",
             "air_date": null,
             "watched": false,
             "watched_date": null,
@@ -1747,6 +1997,126 @@
             "watched_date": null,
             "runtime": null,
             "overview": ""
+          },
+          {
+            "season_number": 5,
+            "episode_number": 13,
+            "title": "第13集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 5,
+            "episode_number": 14,
+            "title": "第14集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 5,
+            "episode_number": 15,
+            "title": "第15集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 5,
+            "episode_number": 16,
+            "title": "第16集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 5,
+            "episode_number": 17,
+            "title": "第17集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 5,
+            "episode_number": 18,
+            "title": "第18集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 5,
+            "episode_number": 19,
+            "title": "第19集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 5,
+            "episode_number": 20,
+            "title": "第20集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 5,
+            "episode_number": 21,
+            "title": "第21集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 5,
+            "episode_number": 22,
+            "title": "第22集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 5,
+            "episode_number": 23,
+            "title": "第23集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 5,
+            "episode_number": 24,
+            "title": "第24集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
           }
         ]
       },
@@ -1871,6 +2241,126 @@
             "season_number": 6,
             "episode_number": 12,
             "title": "第12集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 6,
+            "episode_number": 13,
+            "title": "第13集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 6,
+            "episode_number": 14,
+            "title": "第14集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 6,
+            "episode_number": 15,
+            "title": "第15集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 6,
+            "episode_number": 16,
+            "title": "第16集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 6,
+            "episode_number": 17,
+            "title": "第17集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 6,
+            "episode_number": 18,
+            "title": "第18集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 6,
+            "episode_number": 19,
+            "title": "第19集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 6,
+            "episode_number": 20,
+            "title": "第20集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 6,
+            "episode_number": 21,
+            "title": "第21集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 6,
+            "episode_number": 22,
+            "title": "第22集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 6,
+            "episode_number": 23,
+            "title": "第23集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 6,
+            "episode_number": 24,
+            "title": "第24集",
             "air_date": null,
             "watched": false,
             "watched_date": null,
@@ -2005,6 +2495,126 @@
             "watched_date": null,
             "runtime": null,
             "overview": ""
+          },
+          {
+            "season_number": 7,
+            "episode_number": 13,
+            "title": "第13集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 7,
+            "episode_number": 14,
+            "title": "第14集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 7,
+            "episode_number": 15,
+            "title": "第15集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 7,
+            "episode_number": 16,
+            "title": "第16集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 7,
+            "episode_number": 17,
+            "title": "第17集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 7,
+            "episode_number": 18,
+            "title": "第18集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 7,
+            "episode_number": 19,
+            "title": "第19集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 7,
+            "episode_number": 20,
+            "title": "第20集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 7,
+            "episode_number": 21,
+            "title": "第21集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 7,
+            "episode_number": 22,
+            "title": "第22集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 7,
+            "episode_number": 23,
+            "title": "第23集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 7,
+            "episode_number": 24,
+            "title": "第24集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
           }
         ]
       },
@@ -2129,6 +2739,126 @@
             "season_number": 8,
             "episode_number": 12,
             "title": "第12集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 8,
+            "episode_number": 13,
+            "title": "第13集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 8,
+            "episode_number": 14,
+            "title": "第14集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 8,
+            "episode_number": 15,
+            "title": "第15集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 8,
+            "episode_number": 16,
+            "title": "第16集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 8,
+            "episode_number": 17,
+            "title": "第17集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 8,
+            "episode_number": 18,
+            "title": "第18集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 8,
+            "episode_number": 19,
+            "title": "第19集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 8,
+            "episode_number": 20,
+            "title": "第20集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 8,
+            "episode_number": 21,
+            "title": "第21集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 8,
+            "episode_number": 22,
+            "title": "第22集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 8,
+            "episode_number": 23,
+            "title": "第23集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 8,
+            "episode_number": 24,
+            "title": "第24集",
             "air_date": null,
             "watched": false,
             "watched_date": null,
@@ -2263,6 +2993,126 @@
             "watched_date": null,
             "runtime": null,
             "overview": ""
+          },
+          {
+            "season_number": 9,
+            "episode_number": 13,
+            "title": "第13集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 9,
+            "episode_number": 14,
+            "title": "第14集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 9,
+            "episode_number": 15,
+            "title": "第15集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 9,
+            "episode_number": 16,
+            "title": "第16集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 9,
+            "episode_number": 17,
+            "title": "第17集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 9,
+            "episode_number": 18,
+            "title": "第18集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 9,
+            "episode_number": 19,
+            "title": "第19集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 9,
+            "episode_number": 20,
+            "title": "第20集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 9,
+            "episode_number": 21,
+            "title": "第21集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 9,
+            "episode_number": 22,
+            "title": "第22集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 9,
+            "episode_number": 23,
+            "title": "第23集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 9,
+            "episode_number": 24,
+            "title": "第24集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
           }
         ]
       },
@@ -2392,17 +3242,137 @@
             "watched_date": null,
             "runtime": null,
             "overview": ""
+          },
+          {
+            "season_number": 10,
+            "episode_number": 13,
+            "title": "第13集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 10,
+            "episode_number": 14,
+            "title": "第14集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 10,
+            "episode_number": 15,
+            "title": "第15集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 10,
+            "episode_number": 16,
+            "title": "第16集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 10,
+            "episode_number": 17,
+            "title": "第17集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 10,
+            "episode_number": 18,
+            "title": "第18集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 10,
+            "episode_number": 19,
+            "title": "第19集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 10,
+            "episode_number": 20,
+            "title": "第20集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 10,
+            "episode_number": 21,
+            "title": "第21集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 10,
+            "episode_number": 22,
+            "title": "第22集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 10,
+            "episode_number": 23,
+            "title": "第23集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 10,
+            "episode_number": 24,
+            "title": "第24集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
           }
         ]
       }
     ],
-    "watch_status": "wishlist",
+    "watch_status": "watching",
     "my_rating": null,
     "tags": [],
     "notes": "",
     "source_file": "test_input.txt",
     "external_ids": {},
-    "last_updated": "2026-06-07T06:20:27.976827",
+    "last_updated": "2026-06-07T06:29:55.602200",
     "subscribed": true,
     "next_episode_date": null,
     "next_episode_info": ""
@@ -2562,6 +3532,186 @@
             "watched_date": null,
             "runtime": null,
             "overview": ""
+          },
+          {
+            "season_number": 1,
+            "episode_number": 13,
+            "title": "第13集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 1,
+            "episode_number": 14,
+            "title": "第14集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 1,
+            "episode_number": 15,
+            "title": "第15集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 1,
+            "episode_number": 16,
+            "title": "第16集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 1,
+            "episode_number": 17,
+            "title": "第17集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 1,
+            "episode_number": 18,
+            "title": "第18集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 1,
+            "episode_number": 19,
+            "title": "第19集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 1,
+            "episode_number": 20,
+            "title": "第20集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 1,
+            "episode_number": 21,
+            "title": "第21集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 1,
+            "episode_number": 22,
+            "title": "第22集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 1,
+            "episode_number": 23,
+            "title": "第23集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 1,
+            "episode_number": 24,
+            "title": "第24集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 1,
+            "episode_number": 25,
+            "title": "第25集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 1,
+            "episode_number": 26,
+            "title": "第26集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 1,
+            "episode_number": 27,
+            "title": "第27集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 1,
+            "episode_number": 28,
+            "title": "第28集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 1,
+            "episode_number": 29,
+            "title": "第29集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
+          },
+          {
+            "season_number": 1,
+            "episode_number": 30,
+            "title": "第30集",
+            "air_date": null,
+            "watched": false,
+            "watched_date": null,
+            "runtime": null,
+            "overview": ""
           }
         ]
       }
@@ -2572,7 +3722,7 @@
     "notes": "",
     "source_file": "test_input.txt",
     "external_ids": {},
-    "last_updated": "2026-06-07T06:18:50.012001",
+    "last_updated": "2026-06-07T06:29:21.860662",
     "subscribed": false,
     "next_episode_date": null,
     "next_episode_info": ""
@@ -2611,7 +3761,7 @@
     "notes": "",
     "source_file": "test_input.txt",
     "external_ids": {},
-    "last_updated": "2026-06-07T06:18:50.029399",
+    "last_updated": "2026-06-07T06:29:21.868929",
     "subscribed": false,
     "next_episode_date": null,
     "next_episode_info": ""
@@ -2652,7 +3802,46 @@
     "notes": "",
     "source_file": "test_input.txt",
     "external_ids": {},
-    "last_updated": "2026-06-07T06:18:50.044581",
+    "last_updated": "2026-06-07T06:29:21.875476",
+    "subscribed": false,
+    "next_episode_date": null,
+    "next_episode_info": ""
+  },
+  {
+    "id": "86b3cd8c1764e17f",
+    "title": "阿甘正传",
+    "original_title": "Forrest Gump",
+    "media_type": "movie",
+    "year": 1994,
+    "overview": "阿甘是个智商只有75的低能儿，却用单纯善良和坚定信念，经历了美国数十年的风云变迁，活出了奇迹般的人生。",
+    "poster_path": "",
+    "backdrop_path": "",
+    "genres": [
+      "剧情",
+      "爱情"
+    ],
+    "directors": [
+      "罗伯特·泽米吉斯"
+    ],
+    "cast": [
+      "汤姆·汉克斯",
+      "罗宾·怀特",
+      "加里·西尼斯"
+    ],
+    "rating": 9.5,
+    "rating_count": 2200000,
+    "runtime": 142,
+    "status": "已上映",
+    "first_air_date": null,
+    "last_air_date": null,
+    "seasons": [],
+    "watch_status": "wishlist",
+    "my_rating": null,
+    "tags": [],
+    "notes": "",
+    "source_file": "test_input2.txt",
+    "external_ids": {},
+    "last_updated": "2026-06-07T06:29:21.885272",
     "subscribed": false,
     "next_episode_date": null,
     "next_episode_info": ""

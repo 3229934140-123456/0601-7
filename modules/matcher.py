@@ -302,6 +302,7 @@ class MatchModule:
             'cast': list(item.cast),
             'media_type': item.media_type.value if item.media_type else None,
             'seasons_count': len(item.seasons),
+            'total_episodes': item.total_episodes,
             'status': item.status,
             'runtime': item.runtime,
         }
@@ -319,6 +320,8 @@ class MatchModule:
             return True
         if old['seasons_count'] != len(item.seasons):
             return True
+        if old['total_episodes'] != item.total_episodes:
+            return True
         if old['status'] != item.status:
             return True
         if old['runtime'] != item.runtime:
@@ -326,6 +329,14 @@ class MatchModule:
         return False
 
     def _match_item(self, item: MediaItem, full_match: bool = False) -> Optional[Dict]:
+        well_known = self._find_well_known(item.title)
+        if well_known:
+            result = dict(well_known)
+            self._enrich_with_seasons(item, result)
+            result['_source'] = 'well_known'
+            logger.debug(f"命中内置数据库: {item.title}", self.task_name)
+            return result
+
         cache_key = f"match_{item.id}"
         cache_file = os.path.join(self.cache_dir, f"{cache_key}.json")
         cache_ttl = config.get('match.cache_ttl_hours', 24)
@@ -534,18 +545,21 @@ class MatchModule:
             item.last_air_date = parse_date(data['last_air_date'])
 
         if data.get('seasons') and item.media_type == MediaType.TV:
-            self._apply_seasons(item, data['seasons'])
+            sync = data.get('_source') == 'well_known'
+            self._apply_seasons(item, data['seasons'], sync_structure=sync)
 
         if data.get('next_episode_date'):
             item.next_episode_date = parse_date(data['next_episode_date'])
         if data.get('next_episode_info'):
             item.next_episode_info = data['next_episode_info']
 
-    def _apply_seasons(self, item: MediaItem, seasons_data: List[Dict]) -> None:
+    def _apply_seasons(self, item: MediaItem, seasons_data: List[Dict], sync_structure: bool = False) -> None:
         existing_seasons = {s.season_number: s for s in item.seasons}
+        data_season_nums = set()
 
         for s_data in seasons_data:
             s_num = s_data.get('season_number', 1)
+            data_season_nums.add(s_num)
             if s_num in existing_seasons:
                 season = existing_seasons[s_num]
             else:
@@ -564,9 +578,11 @@ class MatchModule:
 
             episodes_data = s_data.get('episodes', [])
             existing_eps = {ep.episode_number: ep for ep in season.episodes}
+            data_ep_nums = set()
 
             for ep_data in episodes_data:
                 ep_num = ep_data.get('episode_number', 1)
+                data_ep_nums.add(ep_num)
                 if ep_num in existing_eps:
                     ep = existing_eps[ep_num]
                 else:
@@ -585,7 +601,13 @@ class MatchModule:
                 if ep_data.get('overview') and not ep.overview:
                     ep.overview = ep_data['overview']
 
+            if sync_structure:
+                season.episodes = [ep for ep in season.episodes if ep.episode_number in data_ep_nums]
+
             season.episodes.sort(key=lambda e: e.episode_number)
+
+        if sync_structure:
+            item.seasons = [s for s in item.seasons if s.season_number in data_season_nums]
 
         item.seasons.sort(key=lambda s: s.season_number)
 
