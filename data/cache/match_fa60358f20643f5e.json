@@ -1,0 +1,26 @@
+{
+  "title": "老友记",
+  "original_title": "老友记",
+  "overview": "这是《老友记》的简介。",
+  "rating": 7.7,
+  "rating_count": 26618,
+  "genres": [
+    "犯罪",
+    "科幻",
+    "冒险"
+  ],
+  "directors": [
+    "导演甲"
+  ],
+  "cast": [
+    "演员D",
+    "演员F",
+    "演员C"
+  ],
+  "runtime": 138,
+  "status": "已上映",
+  "media_type": "movie",
+  "first_air_date": "2016-09-04",
+  "seasons": [],
+  "_cached_at": "2026-06-07T06:06:51.740286"
+}

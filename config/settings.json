@@ -1,0 +1,62 @@
+{
+  "general": {
+    "timezone": "Asia/Shanghai",
+    "language": "zh-CN",
+    "data_dir": "data",
+    "log_dir": "logs",
+    "export_dir": "exports"
+  },
+  "schedule": {
+    "enabled": true,
+    "cron": "0 8 * * *",
+    "interval_hours": 6,
+    "retry_count": 3,
+    "retry_delay_seconds": 30
+  },
+  "import": {
+    "watchlist_files": [
+      "data/watchlist_input.txt",
+      "data/watchlist_input.csv"
+    ],
+    "supported_formats": [".txt", ".csv", ".json"],
+    "dedup_enabled": true,
+    "fuzzy_match_threshold": 85
+  },
+  "match": {
+    "tmdb_enabled": false,
+    "tmdb_api_key": "",
+    "douban_enabled": true,
+    "imdb_enabled": false,
+    "cache_enabled": true,
+    "cache_ttl_hours": 24
+  },
+  "subscription": {
+    "check_interval_hours": 6,
+    "auto_subscribe_new_seasons": true,
+    "mark_watched_automatically": false
+  },
+  "notification": {
+    "enabled": true,
+    "channels": {
+      "console": true,
+      "email": false,
+      "wechat": false,
+      "bark": false
+    },
+    "email": {
+      "smtp_server": "",
+      "smtp_port": 465,
+      "sender": "",
+      "password": "",
+      "recipients": []
+    },
+    "bark": {
+      "url": ""
+    }
+  },
+  "export": {
+    "formats": ["xlsx", "csv"],
+    "weekly_report_day": "Monday",
+    "weekly_report_time": "09:00"
+  }
+}

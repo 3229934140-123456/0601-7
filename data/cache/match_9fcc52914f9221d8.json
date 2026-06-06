@@ -1,0 +1,25 @@
+{
+  "title": "三体",
+  "original_title": "三体",
+  "overview": "这是《三体》的简介。",
+  "rating": 8.6,
+  "rating_count": 44624,
+  "genres": [
+    "剧情",
+    "奇幻"
+  ],
+  "directors": [
+    "导演甲"
+  ],
+  "cast": [
+    "演员E",
+    "演员D",
+    "演员A"
+  ],
+  "runtime": 143,
+  "status": "已上映",
+  "media_type": "movie",
+  "first_air_date": "2021-06-25",
+  "seasons": [],
+  "_cached_at": "2026-06-07T06:06:51.788894"
+}

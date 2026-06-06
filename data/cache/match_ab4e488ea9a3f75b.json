@@ -1,0 +1,108 @@
+{
+  "title": "狂飙",
+  "original_title": "狂飙",
+  "overview": "这是《狂飙》的简介。",
+  "rating": 8.5,
+  "rating_count": 35431,
+  "genres": [
+    "犯罪",
+    "剧情"
+  ],
+  "directors": [
+    "徐纪周"
+  ],
+  "cast": [
+    "张译",
+    "张颂文"
+  ],
+  "runtime": 116,
+  "status": "在播",
+  "media_type": "tv",
+  "seasons": [
+    {
+      "season_number": 1,
+      "title": "第1季",
+      "air_date": "2024-05-11",
+      "overview": "第1季的简介。",
+      "episodes": [
+        {
+          "season_number": 1,
+          "episode_number": 1,
+          "title": "第1集",
+          "air_date": "2024-05-11",
+          "runtime": 52,
+          "overview": "第1季第1集的剧情简介。"
+        },
+        {
+          "season_number": 1,
+          "episode_number": 2,
+          "title": "第2集",
+          "air_date": "2024-05-18",
+          "runtime": 58,
+          "overview": "第1季第2集的剧情简介。"
+        },
+        {
+          "season_number": 1,
+          "episode_number": 3,
+          "title": "第3集",
+          "air_date": "2024-05-25",
+          "runtime": 52,
+          "overview": "第1季第3集的剧情简介。"
+        },
+        {
+          "season_number": 1,
+          "episode_number": 4,
+          "title": "第4集",
+          "air_date": "2024-06-01",
+          "runtime": 43,
+          "overview": "第1季第4集的剧情简介。"
+        },
+        {
+          "season_number": 1,
+          "episode_number": 5,
+          "title": "第5集",
+          "air_date": "2024-06-08",
+          "runtime": 54,
+          "overview": "第1季第5集的剧情简介。"
+        },
+        {
+          "season_number": 1,
+          "episode_number": 6,
+          "title": "第6集",
+          "air_date": "2024-06-15",
+          "runtime": 51,
+          "overview": "第1季第6集的剧情简介。"
+        },
+        {
+          "season_number": 1,
+          "episode_number": 7,
+          "title": "第7集",
+          "air_date": "2024-06-22",
+          "runtime": 47,
+          "overview": "第1季第7集的剧情简介。"
+        },
+        {
+          "season_number": 1,
+          "episode_number": 8,
+          "title": "第8集",
+          "air_date": "2024-06-29",
+          "runtime": 43,
+          "overview": "第1季第8集的剧情简介。"
+        },
+        {
+          "season_number": 1,
+          "episode_number": 9,
+          "title": "第9集",
+          "air_date": "2024-07-06",
+          "runtime": 50,
+          "overview": "第1季第9集的剧情简介。"
+        }
+      ]
+    }
+  ],
+  "first_air_date": "2025-09-03",
+  "last_air_date": "2026-06-07",
+  "next_episode_date": "2026-06-28",
+  "next_episode_info": "S01E01",
+  "_cached_at": "2026-06-07T06:06:51.801571"
+}

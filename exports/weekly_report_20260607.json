@@ -1,0 +1,75 @@
+{
+  "generated_at": "2026-06-07T06:08:16.672095",
+  "period": {
+    "start": "2026-06-01",
+    "end": "2026-06-07"
+  },
+  "summary": {
+    "total_items": 17,
+    "movies": 12,
+    "tv_shows": 5,
+    "wishlist": 12,
+    "watching": 5,
+    "watched": 0,
+    "subscribed": 0
+  },
+  "this_week_episodes": [],
+  "upcoming_episodes": [],
+  "top_rated": [
+    {
+      "title": "漫长的季节",
+      "rating": 9.4,
+      "year": 2023
+    },
+    {
+      "title": "黑镜",
+      "rating": 9.2,
+      "year": null
+    },
+    {
+      "title": "三体",
+      "rating": 8.6,
+      "year": null
+    },
+    {
+      "title": "狂飙",
+      "rating": 8.5,
+      "year": 2023
+    },
+    {
+      "title": "流浪地球2",
+      "rating": 8.3,
+      "year": 2023
+    },
+    {
+      "title": "绝命毒师",
+      "rating": 8.0,
+      "year": null
+    },
+    {
+      "title": "肖申克的救赎",
+      "rating": 7.8,
+      "year": 1994
+    },
+    {
+      "title": "阿甘正传",
+      "rating": 7.8,
+      "year": 1994
+    },
+    {
+      "title": "蜘蛛侠：纵横宇宙",
+      "rating": 7.8,
+      "year": 2023
+    },
+    {
+      "title": "老友记",
+      "rating": 7.7,
+      "year": null
+    }
+  ],
+  "progress_summary": {
+    "total_episodes": 270,
+    "watched_episodes": 0,
+    "progress_percent": 0.0
+  }
+}

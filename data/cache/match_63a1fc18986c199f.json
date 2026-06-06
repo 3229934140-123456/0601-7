@@ -1,0 +1,27 @@
+{
+  "title": "沙丘2",
+  "original_title": "沙丘2",
+  "overview": "这是《沙丘2》的简介。",
+  "rating": 6.9,
+  "rating_count": 86825,
+  "genres": [
+    "科幻"
+  ],
+  "directors": [
+    "导演甲",
+    "导演丙"
+  ],
+  "cast": [
+    "演员D",
+    "演员A",
+    "演员E",
+    "演员B",
+    "演员C"
+  ],
+  "runtime": 117,
+  "status": "已上映",
+  "media_type": "movie",
+  "first_air_date": "2022-03-11",
+  "seasons": [],
+  "_cached_at": "2026-06-07T06:06:51.779238"
+}

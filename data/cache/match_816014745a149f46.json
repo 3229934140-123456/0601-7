@@ -1,0 +1,29 @@
+{
+  "title": "权力的游戏 S01",
+  "original_title": "权力的游戏 S01",
+  "overview": "这是《权力的游戏 S01》的简介。",
+  "rating": 6.6,
+  "rating_count": 29993,
+  "genres": [
+    "剧情",
+    "动作",
+    "冒险"
+  ],
+  "directors": [
+    "导演丁",
+    "导演乙"
+  ],
+  "cast": [
+    "演员F",
+    "演员D",
+    "演员A",
+    "演员C",
+    "演员E"
+  ],
+  "runtime": 148,
+  "status": "已上映",
+  "media_type": "movie",
+  "first_air_date": "2021-05-27",
+  "seasons": [],
+  "_cached_at": "2026-06-07T06:06:51.730549"
+}
